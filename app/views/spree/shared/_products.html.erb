@@ -22,28 +22,89 @@
 </div>
 
 <% if products.any? %>
-  <ul id="products" class="inline product-listing" data-hook>
-    <% products.each do |product| %>
-      <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
-      <li id="product_<%= product.id %>" class="columns three <%= cycle("alpha", "secondary", "", "omega secondary", name: "classes") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
-        <% cache(@taxon.present? ? [I18n.locale, current_pricing_options, @taxon, product] : [I18n.locale, current_pricing_options, product]) do %>
-          <div class="product-image">
-            <%= link_to(render('spree/shared/image', image: product.display_image, size: :product, itemprop: "image"), url, itemprop: 'url') %>
+  <section class="mbr-gallery cid-qyXBYIkX4s" id="shop1-5f" data-rv-view="2434">
+    <div>
+      <div class="mbr-shop" sorting="" show-sidebar="" card-buttons=""><!-- Shop Gallery -->
+        <div class=" col-md-12 sort-buttons clearfix" style="display: none;">
+          <div class="sort-buttons" style="display: none;">
+            <div class="filter-by-d mbr-section-btn item-button" style="text-align: center;">
+              <a class="btn btn-sm btn-primary disableSortButton" href="" style="position: relative; display: inline-block;">Default sorting</a>
+            </div>
+            <div class="filter-by-pu mbr-section-btn">
+              <a class="btn btn-sm btn-primary-outline disableSortButton" href="">Price: low to high</a>
+            </div>
+            <div class="filter-by-pd mbr-section-btn">
+              <a class="btn btn-sm btn-primary-outline disableSortButton" href="">Price: high to low</a>
+            </div>
           </div>
-          <%= link_to truncate(product.name, length: 50), url, class: 'info', itemprop: "name", title: product.name %>
-          <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-            <% if price = product.price_for(current_pricing_options) %>
-              <span class="price selling" itemprop="price" content="<%= price.to_d %>">
-                <%= price.to_html %>
-              </span>
-            <% end %>
-            <span itemprop="priceCurrency" content="<%= current_pricing_options.currency %>"></span>
-          </span>
-        <% end %>
-      </li>
-    <% end %>
-    <% reset_cycle("classes") %>
-  </ul>
+        </div>
+        <div class="row col-md-12">
+          <div class="wrapper-shop-items col-xl-12">
+            <div class="mbr-gallery-row">
+              <div>
+                <div class="shop-items">
+                  <ul id="products" class="inline product-listing" data-hook>
+                    <% products.each do |product| %>
+                      <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
+                      <li id="product_<%= product.id %>" class="columns three <%= cycle("alpha", "secondary", "", "omega secondary", name: "classes") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+                        <% cache(@taxon.present? ? [I18n.locale, current_pricing_options, @taxon, product] : [I18n.locale, current_pricing_options, product]) do %>
+                          <div class="mbr-gallery-item">
+                            <%= link_to truncate(product.name, length: 50), url, class: 'info', itemprop: "name", title: product.name %>
+                            <div class="item_overlay" ></div>
+                            <div class="galleryItem">
+                              <div class="style_overlay"></div>
+                              <div class="img_wraper">
+                                <div class="product-image">
+                                  <%= link_to(render('spree/shared/image', image: product.display_image, size: :product, itemprop: "image"), url, itemprop: 'url') %>
+                                </div>
+                              </div>
+                              <span class="onsale mbr-fonts-style display-7" data-onsale="false" style="display: none;">-50%</span>
+                              <div class="sidebar_wraper">
+                                <div class="price-block">
+                                  <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <% if price = product.price_for(current_pricing_options) %>
+                                      <span class="price selling" itemprop="price" content="<%= price.to_d %>">
+                                        <%= price.to_html %>
+                                      </span>
+                                    <% end %>
+                                    <span itemprop="priceCurrency" content="<%= current_pricing_options.currency %>"></span>
+                                  </span>
+                                </div>
+                                <!--<div class="mbr-section-btn" buttons="0">
+                                  <a class="btn btn-primary display-7" href="https://mobirise.com">Buy now!</a>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>               
+                          
+                        <% end %>
+                      </li>
+                    <% end %>
+                    <% reset_cycle("classes") %>
+                  </ul>
+
+                  <!-- Backup-shopcart-index -->
+                </div>
+              </div>
+              
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div><!-- Lightbox -->
+        <div class="shopItemsModal_wraper" style="z-index: 100;">
+          <div class="shopItemsModalBg"></div>
+          <div class="shopItemsModal row">
+            <div class="col-md-6 image-modal"></div>
+            <div class="col-md-6 text-modal"></div>
+            <div class="closeModal">
+              <div class="close-modal-wrapper"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <% end %>
 
 <% if paginated_products.respond_to?(:total_pages) %>

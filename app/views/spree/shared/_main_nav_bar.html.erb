@@ -1,12 +1,32 @@
-<nav class="columns sixteen">
-  <ul id="main-nav-bar" class="inline" data-hook>
-    <li id="home-link" data-hook><%= link_to t('spree.home'), spree.root_path %></li>
-    <li id="link-to-cart" data-hook>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <%= link_to spree.root_path, { :class=>"py-2" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+        <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+        <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+        <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+        <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+        <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+      </svg>
+    <% end %>
+
+  <div class="collapse navbar-collapse" id="navbarsExample02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-md-0">
+      <li id="link-to-cart" data-hook class="my-2 my-md-0">
       <noscript>
         <%= link_to t('spree.cart'), spree.cart_path %>
       </noscript>
       &nbsp;
-    </li>
-  </ul>
-  <script>Spree.fetch_cart('<%= j spree.cart_link_path %>')</script>
+      </li>
+      <script>Spree.fetch_cart('<%= j spree.cart_link_path %>')</script>
+    </form>
+  </div>
 </nav>
+
+<%= yield :banner %>
